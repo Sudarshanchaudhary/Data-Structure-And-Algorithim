@@ -6,8 +6,8 @@ class Solution {
             int a=i;
             int b=n-i;
 
-            int sum= a+b;
-            if(sum==n && handleZero(a) && handleZero(b)){
+            
+            if( handleZero(a) && handleZero(b)){
              result[0]=a;
              result[1]=b  ;
             }
