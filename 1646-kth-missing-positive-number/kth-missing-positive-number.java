@@ -1,23 +1,21 @@
 class Solution {
     public int findKthPositive(int[] arr, int k) {
-        int count=0;
-        for(int i=1;i<=2000;i++){
-            boolean found=false;
-            for(int j=0;j<arr.length;j++){
-                if(i==arr[j]){
-                    found=true;
-                    break;
-                }
+        int left=0;
+        int right=arr.length-1;
+
+        while(left<=right){
+            int mid=right+(left-right)/2;
+            int correctNo= mid+1;
+            int missingNumber= arr[mid]-correctNo;
+
+            if(missingNumber>=k){
+                right=mid-1;
             }
-            if(!found){
-                count++;
-                 if(count==k){
-                return i;
+            else{
+                left=mid+1;
             }
-            }
-           
         }
-        return -1;
+        return right+1+k;
         
     }
 }
