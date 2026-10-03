@@ -1,1 +1,1 @@
-<h2>longest-valid-parentheses Notes</h2><hr>[ Time taken: 1hr 21m 29s ]
+<h2>longest-valid-parentheses Notes</h2><hr>[ Time taken: 1hr 27m 48s ]
