@@ -1,33 +1,39 @@
 class Solution {
     public String minRemoveToMakeValid(String s) {
-        Stack<Integer> stack= new Stack<>();
-        StringBuilder str= new StringBuilder(s);
-        for(int i=0;i<str.length();i++){
-            char ch=str.charAt(i);
-            if(ch=='('){
-                stack.push(i);
+        int n=s.length();
+        String update="";
+        int open=0;
+        for(int i=0;i<n;i++){
+            char ch= s.charAt(i);
+            if(ch>='a'&& ch<='z'){
+                update=update+ch;
+            }
+            else if(ch=='('){
+                open++;
+                update=update+ch;
+            }
+            else if(open>0){
+                open--;
+                update=update+ch;
+            }
+        }
+        int close=0;
+        StringBuilder result= new StringBuilder();
+        for(int i=update.length()-1;i>=0;i--){
+            char ch=update.charAt(i);
+            if(ch>='a'&& ch<='z'){
+                result.append(ch);
             }
             else if(ch==')'){
-                if(!stack.isEmpty()){
-                    stack.pop();
-                }
-                else{
-                    str.setCharAt(i,'*');
-                }
+                close++;
+                result.append(ch);
+            }
+            else if(close>0){
+                close--;
+                result.append(ch);
             }
         }
-
-        while(!stack.isEmpty()){
-            str.setCharAt(stack.pop(),'*');
-        }
-
-        StringBuilder ans= new StringBuilder();
-        for(int i=0;i<str.length();i++){
-            if(str.charAt(i)!='*'){
-                ans.append(str.charAt(i));
-            }
-        }
-        return ans.toString();
+        return result.reverse().toString();
         
     }
 }
